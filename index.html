@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>web交互动画之轮播——carousel</title>
+        <link rel="stylesheet" href="./css/carousel.css">
+
+    </head>
+
+
+    <body>
+        <h2>DEMO1：组件特色</h2>
+        <p style="padding:30px;font-size:16px;">以下DEMO基本用到了组件的各功能特色，可触屏划动，自定义轮播内容，自适应宽度</p>
+        <div id="demo1">
+            <a href="javascript:void(0)" class="prev">&lt;</a>
+            <div class="demo1Main">
+                <ul>
+                    <li> <a href="javascript:void(0)"><img src="./images/banner1.jpg"></a></li>
+                </ul>
+            </div>
+            <a href="javascript:void(0)" class="next">&gt;</a>
+            <p class="demo1List">
+                <span class="selected"></span>
+            </p>
+        </div>
+
+        <h2 style="margin-top:30px">DEMO2：最简调用</h2>
+        <p style="padding:30px;font-size:16px;">从源代码中可以看到，该DEMO为最简调用，只需传入各DOM即可</p>
+        <div id="demo2">
+            <a href="javascript:void(0)" class="prev">&lt;</a>
+            <div class="demo2Main">
+                <ul>
+                    <li style="background-image:url(./images/banner1.jpg)"></li>
+                    <li style="background-image:url(./images/banner2.jpg)"></li>
+                    <li style="background-image:url(./images/banner3.jpg)"></li>
+                </ul>
+            </div>
+            <a href="javascript:void(0)" class="next">&gt;</a>
+            <p class="demo2List">
+                <span class="selected"></span><span></span><span></span>
+            </p>
+        </div>
+
+        <script src="http://www.itooy.com/Public/itooy/js/jquery.1.72.js" type="text/javascript"></script>
+        <script src="./js/carousel.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            var demo1=new carousel({
+                "data":[{"img":"./images/banner1.jpg","link":"http://www.itooy.com/"},{"img":"./images/banner2.jpg","link":"http://www.itooy.com/"},{"img":"./images/banner3.jpg","link":"http://www.itooy.com/"}],
+                "tpl":"<li style=\"background-image:url({%s%})\"><a href=\"{%s%}\" target=\"_blank\" ></li>",
+                "order":["img","link"],
+                "dir":"left",
+                "next":"#demo1 a.next",
+                "prev":"#demo1 a.prev",
+                "main":"#demo1 div.demo1Main",
+                "list":"#demo1 p.demo1List",
+                "moveVal":1920,
+                "res":true,
+                "auto":false
+            });
+
+            var demo2=new carousel({
+                "dir":"top",
+                "next":"#demo2 a.next",
+                "prev":"#demo2 a.prev",
+                "main":"#demo2 div.demo2Main",
+                "list":"#demo2 p.demo2List",
+                "moveVal":544,
+            });
+        </script>
+
+    </body>
+</html>

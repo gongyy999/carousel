@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* CSS Document */
+html,body,div,ul,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,a,p{padding:0;margin:0;}
+body{font-family:"微软雅黑", "黑体";font-size:12px;color:#333;line-height:23px;}
+
+ul,li{ list-style:none;}
+a:link,a:visited{text-decoration:none;color:#333;font-size:12px;}
+a:hover,a:active{text-decoration:none;}
+.red{color:#F00;}
+
+
+#demo1{background:#fff; position:relative;height:544px;}
+#demo1 .prev,#demo1 .next{font-size:64px;font-weight:600;top:250px; position:absolute;z-index:1;padding:30px;opacity:0.3;filter: Alpha(Opacity=30);}
+#demo1 .prev:hover,#demo1 .next:hover{opacity:1;filter: Alpha(Opacity=100);font-size:72px;}
+#demo1 .prev{left:100px;}
+#demo1 .next{right:100px;}
+#demo1 .demo1Main{width:100%;height:590px;overflow:hidden;position:relative;}
+#demo1 .demo1Main li{float:left;height:590px;background-repeat:no-repeat;background-position:center top;}
+#demo1 .demo1Main li a{display: block;width:100%;height:100%;}
+#demo1 .demo1List{text-align:center;width:100%; position: absolute;bottom:10px;}
+#demo1 .demo1List span{display:inline-block;width:24px;height:24px;background:#fff;margin:0 2px;text-indent:-99px;overflow:Hidden; cursor:pointer;}
+#demo1 .demo1List span.selected{background:#ccc}
+
+
+#demo2{background:#fff; position:relative;height:544px;width:1000px;margin:0 auto;}
+#demo2 .prev,#demo2 .next{font-size:64px;font-weight:600;top:250px; position:absolute;z-index:1;padding:30px;opacity:0.3;filter: Alpha(Opacity=30);}
+#demo2 .prev:hover,#demo2 .next:hover{opacity:1;filter: Alpha(Opacity=100);font-size:72px;}
+#demo2 .prev{left:100px;}
+#demo2 .next{right:100px;}
+#demo2 .demo2Main{width:100%;height:544px;overflow:hidden;position:relative;}
+#demo2 .demo2Main li{height:544px;background-repeat:no-repeat;background-position:center center;}
+#demo2 .demo2Main li a{display: block;width:100%;height:100%;}
+#demo2 .demo2List{text-align:center;width:100%; position: absolute;bottom:10px;}
+#demo2 .demo2List span{display:inline-block;width:24px;height:24px;background:#fff;margin:0 2px;text-indent:-99px;overflow:Hidden; cursor:pointer;}
+#demo2 .demo2List span.selected{background:#ccc}
