@@ -24,7 +24,6 @@ function carousel(o){
     this.timeout=null;
     this.ing=false;
     this.len=typeof this.data=="undefined" ? this.main.find("li").length:this.data.length;
-    console.log(this.main);
     this.index=0; //当前状态
 
     var _t=this;
@@ -85,10 +84,8 @@ function carousel(o){
             _t.moveMain.find("li:last").clone().css(lastLiStyle).appendTo(_t.moveMain);
         }
 
-       
 
         if(_t.dir=="left"){
-             console.log(_t.moveVal*(_t.len+2));
             _t.moveMain.width(_t.moveVal*(_t.len+2))
         }
 
