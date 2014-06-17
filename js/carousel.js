@@ -2,7 +2,7 @@
  * DOM轮播组件
  * @author GongYunyun(gongyy999@126.com)
  * @date    2014-06-05
- * @version V1.0
+ * @version V1.2
  */
 
 function carousel(o){
@@ -18,13 +18,16 @@ function carousel(o){
     this.auto=typeof o["auto"] != "undefined" ? o["auto"] : true; //是否自动
     this.tpl= typeof o["tpl"] != "undefined" ? o["tpl"] : "<li><img src=\"{%s}\" /></li>"; //轮播元素模板
     this.res=typeof o["res"] != "undefined" ? o["res"] : false; //是否需要自适应容器大小
+    this.callback=o.callback;   //轮播后回调
     
     this.isSupportTouch = "ontouchstart" in document ? true : false;  //是否支持touch事件
     this.moveMain=null; //轮播区域
     this.timeout=null;
     this.ing=false;
-    this.len=typeof this.data=="undefined" ? this.main.find("li").length:this.data.length;
+
+    
     this.index=0; //当前状态
+alert(o["tpl"]);
 
     var _t=this;
 
@@ -40,9 +43,7 @@ function carousel(o){
 
     //初始化
     this.init=function(){
-        var lastLiStyle={};
-        lastLiStyle["position"]="relative";
-        lastLiStyle[_t.dir]="-"+(_t.len+2)*_t.moveVal+"px";
+        
 
         //数据写入
         if(this.data){
@@ -75,18 +76,30 @@ function carousel(o){
 
             _t.moveMain=$("<ul>").addClass("clearfix").html(html);
 
-            _t.moveMain.find("li:last").css(lastLiStyle);
+            
             _t.main.html(_t.moveMain);
-            _t.list.html(list);
+            if( typeof _t.list[0]!="undefined"){
+                _t.list.html(list);
+            }
         }else{
-            _t.moveMain=_t.main.find("ul");
-            _t.moveMain.find("li:first").clone().appendTo(_t.moveMain),
-            _t.moveMain.find("li:last").clone().css(lastLiStyle).appendTo(_t.moveMain);
+            _t.moveMain=_t.main.children("ul");
+            var last=_t.moveMain.children("li:last").clone();
+            _t.moveMain.children("li:first").clone().appendTo(_t.moveMain);
+            last.appendTo(_t.moveMain);
+
         }
+
+        this.len=typeof this.data=="undefined" ? this.moveMain.children("li").length:this.data.length;
+
+        
+        var lastLiStyle={};
+        lastLiStyle["position"]="relative";
+        lastLiStyle[_t.dir]="-"+(_t.len*_t.moveVal)+"px";
+         _t.moveMain.children("li:last").css(lastLiStyle);
 
 
         if(_t.dir=="left"){
-            _t.moveMain.width(_t.moveVal*(_t.len+2))
+            _t.moveMain.width(_t.moveVal*_t.len);
         }
 
         //翻页
@@ -105,14 +118,14 @@ function carousel(o){
         if(_t.res){
             var width=_t.main.width();
             _t.moveVal=width;
-            _t.moveMain.find("li").css("width",width);
+            _t.moveMain.children("li").css("width",width);
             $(window).resize(function(){
                 width=_t.main.width();
                 _t.moveVal=width;
                 _t.moveMain.css({"width":_t.len*width,"margin-left":"-"+_t.moveVal*_t.index+"px"});
 
-                _t.moveMain.find("li:last").css(lastLiStyle).
-                _t.main.find("li").css("width",width);
+                _t.moveMain.children("li:last").css(lastLiStyle).
+                _t.main.children("li").css("width",width);
             })
         }
 
@@ -206,7 +219,7 @@ carousel.prototype.next=function(){
     }
     _t.start();
     
-    if(_t.index==_t.len-1){ //轮回
+    if(_t.index==_t.len-3){ //轮回
         var anima={};
         anima["margin-"+_t.dir]="-"+(_t.moveVal*(_t.index+1));
         _t.moveMain.animate(anima ,500,function(){
@@ -236,12 +249,12 @@ carousel.prototype.prev=function(){
         var anima={},
             style={};
         anima["margin-"+_t.dir]=_t.moveVal;
-        style["margin-"+_t.dir]="-"+(_t.moveVal*(_t.len-1))+"px";
+        style["margin-"+_t.dir]="-"+(_t.moveVal*(_t.len-3))+"px";
         _t.moveMain.animate(anima,500,function(){
             _t.moveMain.css(style);
             _t.end();
         });
-        _t.index=_t.len-1;
+        _t.index=_t.len-3;
     }else{
         _t.index--;
         var style={};
@@ -256,9 +269,15 @@ carousel.prototype.prev=function(){
 carousel.prototype.slider=function(index){
     var _t=this,
         style={};
+    _t.index=index*1;
+
     style["margin-"+_t.dir]="-"+(_t.moveVal*index);
     _t.start();
     _t.moveMain.animate(style, 300,function(){
         _t.end();
     });
+
+    if(typeof _t.callback!="undefined"){
+        _t.callback(_t.index);
+    }
 };
