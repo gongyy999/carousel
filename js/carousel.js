@@ -27,7 +27,7 @@ function carousel(o){
 
     
     this.index=0; //当前状态
-alert(o["tpl"]);
+
 
     var _t=this;
 
@@ -89,8 +89,7 @@ alert(o["tpl"]);
 
         }
 
-        this.len=typeof this.data=="undefined" ? this.moveMain.children("li").length:this.data.length;
-
+        this.len=this.moveMain.children("li").length;
         
         var lastLiStyle={};
         lastLiStyle["position"]="relative";
@@ -118,14 +117,14 @@ alert(o["tpl"]);
         if(_t.res){
             var width=_t.main.width();
             _t.moveVal=width;
-            _t.moveMain.children("li").css("width",width);
+            _t.moveMain.find("li").css("width",width);
             $(window).resize(function(){
                 width=_t.main.width();
                 _t.moveVal=width;
                 _t.moveMain.css({"width":_t.len*width,"margin-left":"-"+_t.moveVal*_t.index+"px"});
 
-                _t.moveMain.children("li:last").css(lastLiStyle).
-                _t.main.children("li").css("width",width);
+                _t.moveMain.find("li:last").css(lastLiStyle).
+                _t.main.find("li").css("width",width);
             })
         }
 

@@ -46,7 +46,7 @@
         <script type="text/javascript">
             var demo1=new carousel({
                 "data":[{"img":"./images/banner1.jpg","link":"http://www.itooy.com/"},{"img":"./images/banner2.jpg","link":"http://www.itooy.com/"},{"img":"./images/banner3.jpg","link":"http://www.itooy.com/"}],
-                "tpl":"<li style=\"background-image:url({%s%})\"><a href=\"123\" target=\"_blank\" ><\/li>",
+                "tpl":"<li style=\"background-image:url({%s%})\"><a href=\"123\" target=\"_blank\" ></a><\/li>",
                 "order":["img","link"],
                 "dir":"left",
                 "next":"#demo1 a.next",
@@ -57,7 +57,6 @@
                 "res":true,
                 "auto":false
             });
-            console.log("{%s%}");
 
             var demo2=new carousel({
                 "dir":"top",
