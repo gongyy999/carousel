@@ -33,8 +33,7 @@
 <p>实例化时需要传入一个JSON数据，用来控制组件的运行，例：</p>
 <pre class="brush:javascript;">    var banner=new carousel({
             "data":[{"img":"./images/banner1.jpg"},{"img":"./images/banner2.jpg"},{"img":"./images/banner3.jpg"}],
-            "tpl":"<li style="\&quot;background-image:url({%s})\&quot;"></li>
-",
+            "tpl":"&lt;li style="\&quot;background-image:url({%s})\&quot;"&gt;&lt;/li&gt;",
             "order":["img"],
             "dir":"left",
             "next":"#banner a.next",
