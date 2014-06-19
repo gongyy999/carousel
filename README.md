@@ -14,16 +14,19 @@
 </div>
 <h4 class="mt20">DOM结构</h4>
 <p>看过一些其他同学写的组件，很多都会在组件内直接生成DOM结构及style样式，这样模块化更明显，使用都只需要关注如何调用就可以了。但是缺点就是结构已经固定死，不太灵活。我希望的是组件能够解决更多的需求，不过，相对来说，使用起来也会变得麻烦些。</p>
-<pre class="brush:html;"><div id="demo"> //最外层容器
-    <a href="javascript:void(0)" class="prev">前翻</a>   
-    <div class="demoMain">
-        <ul class="clearfix">
+<pre class="brush:html;">
+&lt;div id="demo"&gt; //最外层容器
+    &lt;a href="javascript:void(0)" class="prev"&gt;前翻&lt;/a&gt;   
+    &lt;div class="demoMain"&gt;
+        &lt;ul class="clearfix"&gt;
             //具体的结构
-        </ul>
-    </div>
-    <a href="javascript:void(0)" class="next">后翻</a>     <p class="demoList"></p>
-    //列表</div>
-</pre> <p>以上结构为最基础的一个轮播结构，但不仅限与如此。你可以把翻页按钮、列表状态随意放到页面的任何一个位置,轮播的具体内容，也可以通过改变调用参数，变成任何内容。通过后续的调用方法和DEMO，你就会了解我为什么这么说了。<b>有一点需要注意一下，就是需要轮播的DOM必须使用ul,li包裹。</b></p>
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;a href="javascript:void(0)" class="next"&gt;后翻&lt;/a&gt;
+    &lt;p class="demoList"&gt;&lt;span class="selected"&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/p&gt;    //列表
+&lt;/div&gt;
+</pre> 
+<p>以上结构为最基础的一个轮播结构，但不仅限与如此。你可以把翻页按钮、列表状态随意放到页面的任何一个位置,轮播的具体内容，也可以通过改变调用参数，变成任何内容。通过后续的调用方法和DEMO，你就会了解我为什么这么说了。<b>有一点需要注意一下，就是需要轮播的DOM必须使用ul,li包裹。</b></p>
 <h4 class="mt20">css控制</h4>
 <p>css样式就不举例了，因为该组件对样式真心没固定的写法。</p>
 <h4 class="mt20">实例化</h4>

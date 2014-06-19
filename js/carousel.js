@@ -123,7 +123,7 @@ function carousel(o){
                 _t.moveVal=width;
                 _t.moveMain.css({"width":_t.len*width,"margin-left":"-"+_t.moveVal*_t.index+"px"});
 
-                _t.moveMain.find("li:last").css(lastLiStyle).
+                _t.moveMain.find("li:last").css(lastLiStyle);
                 _t.main.find("li").css("width",width);
             })
         }
